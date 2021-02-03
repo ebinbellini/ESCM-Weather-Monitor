@@ -86,7 +86,6 @@ func _on_request_completed(_result, _response_code, _headers, body):
 
 	# Temp
 	insert_value(texture_paths[4], format_temp(split[3]))
-	print(split)
 
 	# pressure
 	insert_value(texture_paths[5], format_pressure(split[4]))
@@ -100,9 +99,7 @@ func insert_value(path: String, value: String):
 
 
 func format_time(inp: String) -> String:
-	print(inp)
 	var result: String =  (inp[2] + inp[3] + ":" + inp[4] + inp[5] + " UTC")
-	print(result)
 	return result
 
 
