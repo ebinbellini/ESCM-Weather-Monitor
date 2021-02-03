@@ -1,8 +1,8 @@
 extends Control
 
 onready var net: HTTPRequest = get_node("HTTPRequest")
-
-onready var grid: GridContainer = get_node("grid")
+onready var grid: GridContainer = get_node("scroll/grid")
+onready var unparsed: Label = get_node("Unparsed")
 
 var textvalue_res: Resource = preload("res://widgets/textvalue.tscn")
 
@@ -16,6 +16,8 @@ var texture_paths = [
 	"res://imgs/temp.svg",
 	"res://imgs/gauge.svg",
 	"res://imgs/info.svg",
+	"res://imgs/robot.svg",
+	"res://imgs/vertical visibility.svg",
 ]
 
 const cloud_codes = [
@@ -29,7 +31,6 @@ const cloud_codes = [
 	"OVC",
 	"VV",
 ]
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,6 +49,10 @@ func _on_request_completed(_result, _response_code, _headers, body):
 	var end = response.find("=</span>")
 	response.erase(end, len(response) - end - 1)
 
+	response = "032020Z 05017KT 1100 -SN VV011 M02/M03 Q1003 RWY 17 WET SNOW 51-100 PCT 1 MM FCT 0.29"
+
+	unparsed.set_text(response)
+
 	# This contains our desired data
 	var split: Array = response.split(" ")
 
@@ -58,10 +63,12 @@ func _on_request_completed(_result, _response_code, _headers, body):
 	# Clock
 	insert_value(texture_paths[0], format_time(split[0]))
 
-	# Wind
-	# Ignore AUTO before wind data
+	# Auto
 	if split[1] == "AUTO":
 		split.remove(1)
+		insert_value(texture_paths[7], "Fully automated")
+
+	# Wind
 	insert_value(texture_paths[1], format_wind(split[1]))
 
 	# Sight
@@ -76,7 +83,9 @@ func _on_request_completed(_result, _response_code, _headers, body):
 			if split[3].find(code) != -1:
 				cloud = true
 
-		if cloud: 
+		if split[3].find("VV") != -1:
+			insert_value(texture_paths[8], format_weather(split[3]))
+		elif cloud: 
 			insert_value(texture_paths[3], format_weather(split[3]))
 		else:
 			insert_value(texture_paths[6], format_weather(split[3]))
@@ -87,8 +96,14 @@ func _on_request_completed(_result, _response_code, _headers, body):
 	# Temp
 	insert_value(texture_paths[4], format_temp(split[3]))
 
-	# pressure
-	insert_value(texture_paths[5], format_pressure(split[4]))
+	while len(split) > 4:
+		if split[4][0] == "Q":
+			# Pressure
+			insert_value(texture_paths[5], format_pressure(split[4]))
+		else:
+			# Other information
+			insert_value(texture_paths[6], split[4])
+		split.remove(4)
 
 
 func insert_value(path: String, value: String):
@@ -117,13 +132,12 @@ func format_wind(value: String) -> String:
 	if speed[0] == "0":
 		speed.erase(0, 1)
 
-	return  speed + " " + ang
+	return speed + " " + ang
 
 
 func format_sight(value: String) -> String:
-	# Kan vara "CAVO"
 	if value == "CAVOK":
-		return "OK!"
+		return "Okej sikt!"
 	else:
 		return value + " m"
 
@@ -140,10 +154,12 @@ func format_weather(value: String) -> String:
 		light = true
 
 	# Check for ///
-	var index: int = res.find("///")
-	if index != -1:
-		res.erase(index, 3)
+	var index: int = res.find("/")
+	while index != -1:
+		res.erase(index, 1)
 		unclear = true
+		index = res.find("/")
+
 
 	var find_number: RegEx = RegEx.new()
 	find_number.compile("[0-9]+")
@@ -240,15 +256,19 @@ func format_weather(value: String) -> String:
 		"OVC":
 			res = "heltäckt"
 		"VV":
-			res = "kan inte se"
+			res = "vertikal sikt"
 		# Unknown code
 		_:
 			res = res
 
+
+
+	if res == "":
+		res = str(number)
+	elif number != -1 and res != "":
+		res = res + " " + str(100 * number) + " fot"
 	if light:
 		res = "lätt " + res
-	if number != -1:
-		res = res + " " + str(100 * number) + " fot"
 	if unclear:
 		res = res + "?"
 

@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://fonts/poppins24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://fonts/poppins180.tres" type="DynamicFont" id=2]
 [ext_resource path="res://fonts/poppinsITALIC80.tres" type="DynamicFont" id=5]
 [ext_resource path="res://fonts/poppinsBOLD80.tres" type="DynamicFont" id=6]
@@ -67,12 +68,30 @@ __meta__ = {
 wait_time = 600.0
 autostart = true
 
-[node name="grid" type="GridContainer" parent="."]
-margin_left = 114.491
-margin_top = 312.044
-margin_right = 154.491
-margin_bottom = 616.044
+[node name="scroll" type="ScrollContainer" parent="."]
+margin_left = 103.0
+margin_top = 286.0
+margin_right = 1864.0
+margin_bottom = 930.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grid" type="GridContainer" parent="scroll"]
 columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Unparsed" type="Label" parent="."]
+margin_left = 114.0
+margin_top = 1016.24
+margin_right = 295.0
+margin_bottom = 1068.24
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.811765, 0.792157, 0.792157, 1 )
+text = "Loading..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
