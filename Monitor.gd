@@ -93,15 +93,10 @@ func _on_request_completed(_result, _response_code, _headers, body):
 
 
 func insert_value(path: String, value: String):
-	var texture = ImageTexture.new()
-	var image = Image.new()
-	image.load(path)
-	texture.create_from_image(image)
-
 	var node = textvalue_res.instance()
 	grid.add_child(node)
 	node.set_value(value)
-	node.set_texture(texture)
+	node.set_texture(load(path))
 
 
 func format_time(inp: String) -> String:
@@ -256,7 +251,7 @@ func format_weather(value: String) -> String:
 	if light:
 		res = "lätt " + res
 	if number != -1:
-		res = res + " " + str(number) + " fot"
+		res = res + " " + str(100 * number) + " fot"
 	if unclear:
 		res = res + "?"
 
@@ -270,7 +265,9 @@ func format_weather(value: String) -> String:
 
 func format_temp(value: String) -> String:
 	var res = value
-	return res.replace("M", "-")
+	res = res.replace("M", "-")
+	res = res.replace("/", " °C / ") + "°C"
+	return res
 
 
 func format_pressure(value: String) -> String:
