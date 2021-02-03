@@ -3,6 +3,7 @@ extends Control
 onready var net: HTTPRequest = get_node("HTTPRequest")
 onready var grid: GridContainer = get_node("scroll/grid")
 onready var unparsed: Label = get_node("Unparsed")
+onready var button: Button = get_node("Button")
 
 var textvalue_res: Resource = preload("res://widgets/textvalue.tscn")
 
@@ -36,7 +37,13 @@ const cloud_codes = [
 func _ready():
 	#nodes = [clock, wind, sight, clouds, temp, pressure]
 	net.connect("request_completed", self, "_on_request_completed")
+	button.connect("button_pressed", self, "_on_button_pressed")
 	fetch_data()
+
+
+func _on_button_pressed():
+	# Toggle visibility
+	unparsed.visible = not unparsed.visible
 
 
 func _on_request_completed(_result, _response_code, _headers, body):
@@ -64,7 +71,7 @@ func _on_request_completed(_result, _response_code, _headers, body):
 	# Auto
 	if split[1] == "AUTO":
 		split.remove(1)
-		insert_value(texture_paths[7], "Fully automated")
+		insert_value(texture_paths[7], "Helt automatiskt")
 
 	# Wind
 	insert_value(texture_paths[1], format_wind(split[1]))
@@ -281,7 +288,7 @@ func format_weather(value: String) -> String:
 func format_temp(value: String) -> String:
 	var res = value
 	res = res.replace("M", "-")
-	res = res.replace("/", " °C / ") + "°C"
+	res = res.replace("/", " °C / ") + " °C"
 	return res
 
 
