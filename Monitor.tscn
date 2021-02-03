@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://fonts/poppins180.tres" type="DynamicFont" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0.4, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 103.0
+margin_top = 67.6541
+margin_right = 258.0
+margin_bottom = 146.654
+custom_fonts/font = ExtResource( 1 )
+text = "ESCM"
+__meta__ = {
+"_edit_use_anchors_": false
+}
