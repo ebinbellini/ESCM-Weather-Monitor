@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/poppins56.tres" type="DynamicFont" id=1]
+[ext_resource path="res://imgs/clock.svg" type="Texture" id=2]
+[ext_resource path="res://widgets/textvalue.gd" type="Script" id=3]
+
+[node name="Control" type="Control"]
+margin_right = 363.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 130.633
+margin_top = 14.2092
+margin_right = 374.633
+margin_bottom = 175.209
+custom_fonts/font = ExtResource( 1 )
+text = "030850Z
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
