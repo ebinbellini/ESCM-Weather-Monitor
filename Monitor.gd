@@ -49,8 +49,6 @@ func _on_request_completed(_result, _response_code, _headers, body):
 	var end = response.find("=</span>")
 	response.erase(end, len(response) - end - 1)
 
-	response = "032020Z 05017KT 1100 -SN VV011 M02/M03 Q1003 RWY 17 WET SNOW 51-100 PCT 1 MM FCT 0.29"
-
 	unparsed.set_text(response)
 
 	# This contains our desired data
