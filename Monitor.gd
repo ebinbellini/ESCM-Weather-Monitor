@@ -84,7 +84,7 @@ func _on_request_completed(_result, _response_code, _headers, body):
 	# then we stop expecting weather contiditions
 	var temperature_regex: RegEx = RegEx.new()
 	temperature_regex.compile("(M?[0-9][0-9]*\/M?[0-9][0-9]*)")
-	while temperature_regex.search(split[3]) and len(split) > 5:
+	while not temperature_regex.search(split[3]) and len(split) > 5:
 		# Figure out is code is for clouds
 		var cloud: bool = false
 		for code in cloud_codes:
@@ -102,7 +102,6 @@ func _on_request_completed(_result, _response_code, _headers, body):
 
 	# Temp
 	if temperature_regex.search(split[3]):
-		print("MATCHAR")
 		insert_value(texture_paths[4], format_temp(split[3]))
 		split.remove(3)
 
