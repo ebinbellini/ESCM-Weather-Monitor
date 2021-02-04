@@ -7,6 +7,7 @@
 margin_right = 500.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 500, 120 )
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 color = Color( 0.972549, 0.972549, 0.972549, 1 )
 script = ExtResource( 2 )
@@ -35,6 +36,7 @@ anchor_bottom = 1.0
 margin_top = -2.00001
 margin_right = -3.05176e-05
 margin_bottom = -7.62939e-06
+mouse_filter = 1
 color = Color( 0, 0, 0, 0.156863 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -43,6 +45,7 @@ __meta__ = {
 [node name="Button" type="Button" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 flat = true
 __meta__ = {

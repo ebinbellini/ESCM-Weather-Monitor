@@ -1,7 +1,7 @@
 extends Control
 
 onready var net: HTTPRequest = get_node("HTTPRequest")
-onready var grid: GridContainer = get_node("scroll/grid")
+onready var grid: GridContainer = get_node("hide_dropdown/scroll/grid")
 onready var unparsed: Label = get_node("Unparsed")
 onready var button: Button = get_node("Button")
 onready var title: Label = get_node("dropdown-button/Title")
