@@ -7,7 +7,6 @@ var changing_allowed: bool = false
 
 
 func toggle_visibility():
-	print(modulate.a)
 	if modulate.a < 0.1:
 		display()
 	else:
