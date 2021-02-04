@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://fonts/poppins24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://fonts/poppins180.tres" type="DynamicFont" id=2]
-[ext_resource path="res://widgets/button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://widgets/button/button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://imgs/triangle.svg" type="Texture" id=4]
 [ext_resource path="res://fonts/poppinsITALIC80.tres" type="DynamicFont" id=5]
 [ext_resource path="res://fonts/poppinsBOLD80.tres" type="DynamicFont" id=6]
+[ext_resource path="res://widgets/dropdown/dropdown.tscn" type="PackedScene" id=7]
+[ext_resource path="res://plane-spinner.ogv" type="VideoStream" id=8]
 [ext_resource path="res://Monitor.gd" type="Script" id=10]
 
 [node name="Control" type="Control"]
@@ -19,17 +22,6 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0.4, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="."]
-margin_left = 94.0609
-margin_top = 36.8159
-margin_right = 595.061
-margin_bottom = 288.816
-custom_fonts/font = ExtResource( 2 )
-text = "ESCM"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -69,11 +61,20 @@ __meta__ = {
 wait_time = 600.0
 autostart = true
 
+[node name="hide_dropdown" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="scroll" type="ScrollContainer" parent="."]
 margin_left = 103.0
 margin_top = 286.0
 margin_right = 1864.0
 margin_bottom = 908.0
+mouse_filter = 1
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -107,4 +108,82 @@ text = "Loading..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="dropdown-button" type="Control" parent="."]
+anchor_right = 0.021
+anchor_bottom = 0.053
+margin_left = 79.0102
+margin_top = 68.0
+margin_right = 870.69
+margin_bottom = 221.76
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="dropdown-button"]
+margin_left = 11.2086
+margin_top = -8.93515
+margin_right = 512.209
+margin_bottom = 243.065
+custom_fonts/font = ExtResource( 2 )
+text = "ESCM"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="dropdown-button"]
+margin_left = 551.377
+margin_top = 89.8983
+margin_right = 599.377
+margin_bottom = 137.898
+texture = ExtResource( 4 )
+
+[node name="Button" type="Button" parent="dropdown-button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 16.0
+margin_right = -210.0
+mouse_default_cursor_shape = 2
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dropdown" parent="dropdown-button" instance=ExtResource( 7 )]
+margin_left = 538.328
+margin_top = 61.1535
+margin_right = 1038.33
+margin_bottom = 711.154
+
+[node name="spinner" type="VideoPlayer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -183.5
+margin_top = -101.5
+margin_right = 183.5
+margin_bottom = 101.5
+stream = ExtResource( 8 )
+autoplay = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="spinner"]
+anchor_bottom = 1.0
+margin_right = 84.0
+color = Color( 0, 0, 0.4, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="spinner"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -83.819
+margin_right = 0.181
+margin_bottom = 1.52588e-05
+color = Color( 0, 0, 0.4, 1 )
 [connection signal="timeout" from="Timer" to="." method="fetch_data"]
+[connection signal="pressed" from="hide_dropdown" to="dropdown-button/Dropdown" method="hide"]
+[connection signal="pressed" from="dropdown-button/Button" to="dropdown-button/Dropdown" method="toggle_visibility"]
+[connection signal="finished" from="spinner" to="." method="_on_spinner_finished"]

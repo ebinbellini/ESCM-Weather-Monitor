@@ -4,12 +4,15 @@ onready var net: HTTPRequest = get_node("HTTPRequest")
 onready var grid: GridContainer = get_node("scroll/grid")
 onready var unparsed: Label = get_node("Unparsed")
 onready var button: Button = get_node("Button")
+onready var title: Label = get_node("dropdown-button/Title")
+onready var dropdown_list: Control = get_node("dropdown-button/Dropdown/ScrollContainer/VBoxContainer")
+onready var dropdown: Control = get_node("dropdown-button/Dropdown")
+onready var spinner: VideoPlayer = get_node("spinner")
 
-var textvalue_res: Resource = preload("res://widgets/textvalue.tscn")
+var textvalue_res: Resource = preload("res://widgets/textvalue/textvalue.tscn")
+var dropdown_option_res: Resource = preload("res://widgets/dropdown/dropdown_option.tscn")
 
-var nodes: Array = []
-
-var texture_paths = [
+const texture_paths = [
 	"res://imgs/clock.svg",
 	"res://imgs/wind.svg",
 	"res://imgs/eye.svg",
@@ -33,23 +36,74 @@ const cloud_codes = [
 	"VV",
 ]
 
+var selected_base: String = "ESCM"
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#nodes = [clock, wind, sight, clouds, temp, pressure]
 	net.connect("request_completed", self, "_on_request_completed")
 	button.connect("button_pressed", self, "_on_button_pressed")
 	fetch_data()
 
 
 func _on_button_pressed():
-	# Toggle visibility
+	# Toggle visibility of unparsed data
 	unparsed.visible = not unparsed.visible
 
 
 func _on_request_completed(_result, _response_code, _headers, body):
-	# Parse response
 	var response: String = body.get_string_from_utf8()
-	var escm_pos: int = response.find("ESCM")
+
+	parse_metar_data(response)
+	parse_bases(response)
+	spinner.visible = false
+
+
+func parse_bases(response: String):
+	# Store all bases in the array named "bases"
+	var search: String = 'item-header">'
+	var bases: Array = []
+
+	var base_pos: int = response.find(search)
+	# Skip first
+	response.erase(0, base_pos + len(search))
+	base_pos = response.find(search)
+
+	while base_pos != -1:
+		var base: String = "ICAO"
+		response.erase(0, base_pos + len(search))
+
+		for i in range(4):
+			base[i] = response[i]
+
+		bases.append(base)
+
+		base_pos = response.find(search)
+	
+	# Now we have the bases
+
+	# Remove old bases from dropdown
+	for child in dropdown_list.get_children():
+		child.queue_free()
+
+	# Put all the bases in the dropdown menu
+	for base in bases:
+		var option: Control = dropdown_option_res.instance()	
+		dropdown_list.add_child(option)
+		option.set_value(base)
+		option.connect("pressed", self, "base_selected")
+
+
+func base_selected(base: String):
+	selected_base = base
+	fetch_data()
+	title.set_text(base)
+	dropdown.hide()
+
+
+func parse_metar_data(response: String):
+	# Parse response
+	var escm_pos: int = response.find(selected_base)
 	response.erase(0, escm_pos)
 	var item_text_pos: int = response.find('item-text">')
 	response.erase(0, item_text_pos + len('item-text">'))
@@ -270,8 +324,6 @@ func format_weather(value: String) -> String:
 		_:
 			res = res
 
-
-
 	if res == "":
 		res = str(number)
 	elif number != -1 and res != "":
@@ -306,4 +358,15 @@ func format_pressure(value: String) -> String:
 
 
 func fetch_data():
+	for child in grid.get_children():
+		child.queue_free()
+
+	spinner.visible = true
+	spinner.play()
+
 	net.request("https://aro.lfv.se/Links/Link/ViewLink?TorLinkId=314&type=MET")
+
+
+func _on_spinner_finished():
+	if spinner.visible:
+		spinner.play()
