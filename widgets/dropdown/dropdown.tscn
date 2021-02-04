@@ -37,6 +37,18 @@ tracks/2/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.0798485, 0.739347, 1, -0.16087, -0.0195535, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.22 )
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("..:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.01, 0.22 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
 
 [node name="Dropdown" type="Control"]
 modulate = Color( 1, 1, 1, 0 )

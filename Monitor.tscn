@@ -71,9 +71,9 @@ __meta__ = {
 
 [node name="scroll" type="ScrollContainer" parent="hide_dropdown"]
 margin_left = 103.0
-margin_top = 286.0
+margin_top = 297.0
 margin_right = 1864.0
-margin_bottom = 908.0
+margin_bottom = 892.0
 mouse_filter = 1
 scroll_horizontal_enabled = false
 __meta__ = {
