@@ -137,7 +137,7 @@ func parse_metar_data(response: String):
 	# Check if we have reached the temperature using regex and if so
 	# then we stop expecting weather contiditions
 	var temperature_regex: RegEx = RegEx.new()
-	temperature_regex.compile("(M?[0-9][0-9]*\/M?[0-9][0-9]*)")
+	temperature_regex.compile("^(M?[0-9][0-9]*\/M?[0-9][0-9]*)$")
 	while not temperature_regex.search(split[3]) and len(split) > 5:
 		# Figure out is code is for clouds
 		var cloud: bool = false
