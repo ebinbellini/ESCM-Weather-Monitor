@@ -18,10 +18,6 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 17.6389
-margin_top = -10.0794
-margin_right = 17.6389
-margin_bottom = -10.0793
 color = Color( 0, 0, 0.4, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -98,6 +94,7 @@ margin_right = 363.265
 margin_bottom = -90.6016
 
 [node name="Unparsed" type="Label" parent="."]
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 103.387
