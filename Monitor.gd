@@ -80,8 +80,11 @@ func _on_request_completed(_result, _response_code, _headers, body):
 	insert_value(texture_paths[2], format_sight(split[2]))
 
 	# Weather conditions
-	var slash_split = split[3].split("/")
-	while (not (len(slash_split) == 2 && len(slash_split[1]) > 0)):
+	# Check if we have reached the temperature using regex and if so
+	# then we stop expecting weather contiditions
+	var temperature_regex: RegEx = RegEx.new()
+	temperature_regex.compile("(M?[0-9][0-9]*\/M?[0-9][0-9]*)")
+	while temperature_regex.search(split[3]) and len(split) > 5:
 		# Figure out is code is for clouds
 		var cloud: bool = false
 		for code in cloud_codes:
@@ -96,19 +99,21 @@ func _on_request_completed(_result, _response_code, _headers, body):
 			insert_value(texture_paths[6], format_weather(split[3]))
 
 		split.remove(3)
-		slash_split = split[3].split("/")
 
 	# Temp
-	insert_value(texture_paths[4], format_temp(split[3]))
+	if temperature_regex.search(split[3]):
+		print("MATCHAR")
+		insert_value(texture_paths[4], format_temp(split[3]))
+		split.remove(3)
 
-	while len(split) > 4:
-		if split[4][0] == "Q":
+	while len(split) > 3:
+		if split[3][0] == "Q":
 			# Pressure
-			insert_value(texture_paths[5], format_pressure(split[4]))
+			insert_value(texture_paths[5], format_pressure(split[3]))
 		else:
 			# Other information
-			insert_value(texture_paths[6], split[4])
-		split.remove(4)
+			insert_value(texture_paths[6], split[3])
+		split.remove(3)
 
 
 func insert_value(path: String, value: String):
