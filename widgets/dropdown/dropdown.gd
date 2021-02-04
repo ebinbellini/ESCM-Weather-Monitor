@@ -7,6 +7,7 @@ var changing_allowed: bool = false
 
 
 func toggle_visibility():
+	print(modulate.a)
 	if modulate.a < 0.1:
 		display()
 	else:
@@ -20,7 +21,7 @@ func display():
 
 
 func hide():
-	if visible && changing_allowed:
+	if changing_allowed and modulate.a > 0.1:
 		anim.play_backwards("display")
 
 
