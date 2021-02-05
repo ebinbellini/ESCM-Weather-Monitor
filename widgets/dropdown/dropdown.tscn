@@ -51,6 +51,7 @@ tracks/3/keys = {
 }
 
 [node name="Dropdown" type="Control"]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 rect_clip_content = true
 script = ExtResource( 2 )

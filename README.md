@@ -6,6 +6,8 @@ ESCM airport. You can also choose to view other airports' weather using the
 dropdown menu. The weather will automatically be updated as soon as there is a
 new METAR available. 
 
+Currently only available in Swedish, but translations are in the works.
+
 ## Supported platforms:
 Linux/X11, Windows, and Android!
 

@@ -30,6 +30,11 @@ window/size/width=1920
 window/size/height=1080
 window/dpi/allow_hidpi=true
 
+[locale]
+
+translations=PoolStringArray( "res://translations/translations.sv.translation", "res://translations/translations.ja.translation", "res://translations/translations.en.translation" )
+locale_filter=[ 0, [  ] ]
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
