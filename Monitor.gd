@@ -276,7 +276,7 @@ func fetch_data():
 	spinner.visible = true
 	spinner.play()
 
-	net.request("https://aro.lfv.se/Links/Link/ViewLink?TorLinkId=314&type=MET")
+	net.request("https://weather.ebinbellini.top/weather-data")
 
 
 func _on_spinner_finished():
