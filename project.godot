@@ -29,13 +29,25 @@ gdscript/warnings/return_value_discarded=false
 window/size/width=1920
 window/size/height=1080
 window/dpi/allow_hidpi=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep_height"
 
 [locale]
 
 translations=PoolStringArray( "res://translations/translations.sv.translation", "res://translations/translations.ja.translation", "res://translations/translations.en.translation" )
 locale_filter=[ 0, [  ] ]
+translation_remaps={
+"res://fonts/poppins/poppins180.tres": PoolStringArray( "res://fonts/Noto_Sans_JP/Noto_Sans_JP180.tres:ja" ),
+"res://fonts/poppins/poppins24.tres": PoolStringArray( "res://fonts/Noto_Sans_JP/Noto_Sans_JP24.tres:ja" ),
+"res://fonts/poppins/poppins32.tres": PoolStringArray( "res://fonts/Noto_Sans_JP/Noto_Sans_JP32.tres:ja" ),
+"res://fonts/poppins/poppins40.tres": PoolStringArray( "res://fonts/Noto_Sans_JP/Noto_Sans_JP40.tres:ja" ),
+"res://fonts/poppins/poppins48.tres": PoolStringArray( "res://fonts/Noto_Sans_JP/Noto_Sans_JP48.tres:ja" ),
+"res://fonts/poppins/poppins56.tres": PoolStringArray( "res://fonts/Noto_Sans_JP/Noto_Sans_JP56.tres:ja" ),
+"res://fonts/poppins/poppins80.tres": PoolStringArray( "res://fonts/Noto_Sans_JP/Noto_Sans_JP80.tres:ja" ),
+"res://fonts/poppins/poppinsBOLD80.tres": PoolStringArray( "res://fonts/Noto_Sans_JP/Noto_Sans_JPBOLD80.tres:ja" ),
+"res://fonts/poppins/poppinsITALIC80.tres": PoolStringArray( "res://fonts/Noto_Sans_JP/Noto_Sans_JPITALIC80.tres:ja" )
+}
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"

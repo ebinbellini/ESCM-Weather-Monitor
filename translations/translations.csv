@@ -1,43 +1,53 @@
 keys,sv,en,ja
-FG,dimma,test,test
-BR,fuktdis,test,test
-MIFG,låg dimma,test,test
-BFCG,hög dimbank,test,test
-PRFG,mkt dimma,test,test
-FZFG,underkyld dimma,test,test
-DZ,duggregn,test,test
-FZDZ,underkylt duggregn,test,test
-FZRA,underkylt regn,test,test
-RA,regn,test,test
-SN,snö,test,test
-SNRA,snö och regn,test,test
-SG,kornsnö,test,test
-GR,hagel,test,test
-PL,iskorn,test,test
-SHRA,regnskurar,test,test
-SHSN,snöbyar,test,test
-SHRASN,regn- och snöbyar,test,test
-SHSNRA,snö- och regnbyar,test,test
-BLSN,högt snödrev,test,test
-DRSN,lågt snödrev,test,test
-IC,isnålar,test,test
-DU,stoft,test,test
-DS,stoftstorm,test,test
-PO,stoftvirvlar,test,test
-SA,sand,test,test
-SS,sandstorm,test,test
-VA,vulkanisk aska!!,test,test
-FC,tromb,test,test
-FU,rök,test,test
-HZ,torrdis,test,test
-TS,åskväder,test,test
-SQ,linjeby,test,test
-SKC,klar himmel,test,test
-NCD,inget moln,test,test
-CLR,typ klart,test,test
-NSC,typ inga moln,test,test
-FEW,1-2 oktas,test,test
-SCT,3-4 oktas,test,test
-BKN,5-7 oktas,test,test
-OVC,heltäckt,test,test
-VV,vertikal sikt,test,test
+FG,dimma,test,霧
+BR,fuktdis,test,もや
+MIFG,låg dimma,test,低い霧
+BFCG,hög dimbank,test,高い霧
+PRFG,delvis dimma,test,部分的な霧
+FZFG,underkyld dimma,test,冷たい霧
+DZ,duggregn,test,小雨
+FZDZ,underkylt duggregn,test,冷たい小雨
+FZRA,underkylt regn,test,冷たい雨
+RA,regn,test,雨
+SN,snö,test,雪
+SNRA,snö och regn,test,雨雪
+SG,kornsnö,test,霧雪
+GR,hagel,test,あられ
+PL,iskorn,test,氷あられ
+SHRA,regnskurar,test,にわか雨
+SHSN,snöbyar,test,にわか雪
+SHRASN,regn- och snöbyar,test,にわか雨と雪
+SHSNRA,snö- och regnbyar,test,にわか雪と雨
+SHGS,byar av snöhagel,test,にわかあられ
+SHGR,byar av ishagel,test,にわか氷あられ
+BLSN,högt snödrev,test,吹いてる雪
+DRSN,lågt snödrev,test,低い吹いてる雪
+IC,isnålar,test,霜柱
+DU,stoft,test,砂塵
+DS,stoftstorm,test,砂塵嵐
+PO,stoftvirvlar,test,塵旋風
+SA,sand,test,砂
+SS,sandstorm,test,砂嵐
+VA,vulkanisk aska!!,test,火山灰
+FC,tromb,test,漏斗雲
+FU,rök,test,煙
+HZ,torrdis,test,かずみ
+TS,åskväder,test,雷雨
+SQ,linjeby,test,急風
+SKC,klar himmel,test,晴天
+NCD,inget moln,test,曇が見つけられない
+CLR,typ klart,test,高い雲だけ
+NSC,typ inga moln,test,重大な雲がない
+FEW,1-2 oktas,test,雲量が1/8～2/8
+SCT,3-4 oktas,test,雲量が3/8～4/8
+BKN,5-7 oktas,test,雲量が5/8～7/8
+OVC,heltäckt,test,雲量が8/8
+VV,vertikal sikt,test,垂直な視界
+SHOW_RAW,Visa rådata,Show raw data,生データを表示
+FULLY_AUTO,Helt automatisk,Fully automated,全然自動
+UTC_TIME,UTC,UTC,協定世界時
+KNOTS,knop,knots,ノット
+OK_VISIBILITY,Okej sikt!,OK visibility!,視界は順調です！
+METER,m,m,メートル
+LIGHT,lätt,light,弱い
+FEET,fot,foot,フィート

@@ -125,7 +125,7 @@ func parse_metar_data(response: String):
 	# Auto
 	if split[1] == "AUTO":
 		split.remove(1)
-		insert_value(texture_paths[7], "Helt automatiskt")
+		insert_value(texture_paths[7], tr("FULLY_AUTO"))
 
 	# Wind
 	insert_value(texture_paths[1], format_wind(split[1]))
@@ -177,7 +177,7 @@ func insert_value(path: String, value: String):
 
 
 func format_time(inp: String) -> String:
-	var result: String =  (inp[2] + inp[3] + ":" + inp[4] + inp[5] + " UTC")
+	var result: String =  (inp[2] + inp[3] + ":" + inp[4] + inp[5] + " " + tr("UTC_TIME"))
 	return result
 
 
@@ -190,7 +190,7 @@ func format_wind(value: String) -> String:
 		ang.erase(0, 1)
 
 
-	var speed = value[3] + value[4] + " knop"
+	var speed = value[3] + value[4] + " " + tr("KNOTS")
 	# Remove zeroes from the beginning
 	if speed[0] == "0":
 		speed.erase(0, 1)
@@ -200,9 +200,9 @@ func format_wind(value: String) -> String:
 
 func format_sight(value: String) -> String:
 	if value == "CAVOK":
-		return "Okej sikt!"
+		return tr("OK_VISIBILITY")
 	else:
-		return value + " m"
+		return value + " " + tr("METER")
 
 
 func format_weather(value: String) -> String:
@@ -239,9 +239,9 @@ func format_weather(value: String) -> String:
 	if res == "":
 		res = str(number)
 	elif number != -1 and res != "":
-		res = res + " " + str(100 * number) + " fot"
+		res = res + " " + str(100 * number) + " " + tr("FEET")
 	if light:
-		res = "lätt " + res
+		res = tr("LIGHT") + " " + res
 	if unclear:
 		res = res + "?"
 
