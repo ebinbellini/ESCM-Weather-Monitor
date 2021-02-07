@@ -103,8 +103,8 @@ func base_selected(base: String):
 
 func parse_metar_data(response: String):
 	# Parse response
-	var escm_pos: int = response.find(selected_base)
-	response.erase(0, escm_pos)
+	var base_pos: int = response.find(selected_base)
+	response.erase(0, base_pos)
 	var item_text_pos: int = response.find('item-text">')
 	response.erase(0, item_text_pos + len('item-text">'))
 	var end = response.find("=</span>")

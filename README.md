@@ -1,5 +1,5 @@
-# ESCM-Weather-Monitor
-![alt text](https://raw.githubusercontent.com/ebinbellini/ESCM-Weather-Monitor/1.0.1/icon.png "ESCM Weather Monitor logo")
+# Ebin Weather Monitor
+![alt text](https://raw.githubusercontent.com/ebinbellini/Ebin-Weather-Monitor/master/icon.png "Ebin Weather Monitor logo")
 
 With this unofficial program you can view information about the weather at the
 ESCM airport. You can also choose to view other airports' weather using the

@@ -15,8 +15,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="ESCM Weather Monitor"
-config/description="Displays the weather at ESCM"
+config/name="Ebin Weather Monitor"
+config/description="Displays the weather at various airports"
 run/main_scene="res://Monitor.tscn"
 config/icon="res://icon.png"
 
