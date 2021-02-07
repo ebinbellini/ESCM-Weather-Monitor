@@ -22,6 +22,7 @@ const texture_paths = [
 	"res://imgs/info.svg",
 	"res://imgs/robot.svg",
 	"res://imgs/vertical visibility.svg",
+	"res://imgs/wind variation.svg",
 ]
 
 const cloud_codes = [
@@ -130,6 +131,13 @@ func parse_metar_data(response: String):
 	# Wind
 	insert_value(texture_paths[1], format_wind(split[1]))
 
+	# Wind variation
+	var variation_regex: RegEx = RegEx.new()
+	variation_regex.compile("^([0-9]{3}V[0-9]{3})$")
+	if variation_regex.search(split[2]):
+		insert_value(texture_paths[9], format_wind_variation(split[2]))
+		split.remove(2)
+
 	# Sight
 	insert_value(texture_paths[2], format_sight(split[2]))
 
@@ -182,9 +190,8 @@ func format_time(inp: String) -> String:
 
 
 func format_wind(value: String) -> String:
-	# kan ha auto före
-
 	var ang: String = value[0] + value[1] + value[2] + "°"
+
 	# Remove zeroes from the beginning
 	while ang[0] == "0":
 		ang.erase(0, 1)
@@ -196,6 +203,18 @@ func format_wind(value: String) -> String:
 		speed.erase(0, 1)
 
 	return speed + " " + ang
+
+	
+func format_wind_variation(value: String) -> String:
+	var split = value.split("V")
+
+	# Remove zeroes
+	for i in range(2):
+		while split[i][0] == "0":
+			print(split[i])
+			split[i] = split[i].trim_prefix("0")
+
+	return split[0] + "°" + tr("FROM_TO") + split[1] + "°"
 
 
 func format_sight(value: String) -> String:

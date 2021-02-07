@@ -12,5 +12,4 @@ Currently only available in Swedish, but translations are in the works.
 Linux/X11, Windows, and Android!
 
 ## How to get started: 
-
 Download the file and run it. Done! 
