@@ -35,12 +35,12 @@ HZ,torrdis,test,かずみ
 TS,åskväder,test,雷雨
 SQ,linjeby,test,急風
 SKC,klar himmel,test,晴天
-NCD,inget moln,test,曇が見つけられない
+NCD,inget moln hittat,test,曇が見つけられない
 CLR,typ klart,test,高い雲だけ
 NSC,typ inga moln,test,重大な雲がない
-FEW,1-2 oktas,test,雲量が1/8～2/8
-SCT,3-4 oktas,test,雲量が3/8～4/8
-BKN,5-7 oktas,test,雲量が5/8～7/8
+FEW,få moln,test,雲量が1/8～2/8
+SCT,spridda moln,test,雲量が3/8～4/8
+BKN,mulet,test,雲量が5/8～7/8
 OVC,heltäckt,test,雲量が8/8
 VV,vertikal sikt,test,垂直な視界
 SHOW_RAW,Visa rådata,Show raw data,生データを表示
