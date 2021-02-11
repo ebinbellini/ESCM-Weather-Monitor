@@ -35,13 +35,13 @@ HZ,torrdis,haze,かずみ
 TS,åskväder,thunderstorm,雷雨
 SQ,linjeby,squall,急風
 SKC,klar himmel,clear sky,晴天
-NCD,inget moln hittat,no clouds detected,曇が見つけられない
+NCD,hittade inga moln,no clouds detected,曇が見つけられない
 CLR,typ klart,sky clear,高い雲だけ
-NSC,typ inga moln,no significant cloud,重大な雲がない
-FEW,få moln,few,雲量が1/8～2/8
-SCT,spridda moln,scattered,雲量が3/8～4/8
-BKN,mulet,broken,雲量が5/8～7/8
-OVC,heltäckt,overcast,雲量が8/8
+NSC,typ inga moln,no significant cloud,重大な雲はない
+FEW,få moln,few,雲量が少ない
+SCT,spridda moln,scattered,雲量が薄い
+BKN,mulet,broken,曇りがち
+OVC,heltäckt,overcast,曇り空
 VV,vertikal sikt,vertical visibility,垂直な視界
 SHOW_RAW,Visa rådata,Show raw data,生データを表示
 FULLY_AUTO,Helt automatisk,Fully automated,全然自動
@@ -50,6 +50,6 @@ KNOTS,knop,knots,ノット
 OK_VISIBILITY,Okej sikt!,OK visibility!,視界は順調です！
 METER,m,m,メートル
 LIGHT,lätt,light,弱い
-FEET,fot,foot,フィート
+FEET,fot,feet,フィート
 WIND,vind,wind,風
 FROM_TO,-,-,～

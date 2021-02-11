@@ -36,6 +36,7 @@ window/stretch/aspect="keep_height"
 
 [locale]
 
+test="sv"
 translations=PoolStringArray( "res://translations/translations.sv.translation", "res://translations/translations.ja.translation", "res://translations/translations.en.translation" )
 locale_filter=[ 0, [  ] ]
 translation_remaps={
