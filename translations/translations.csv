@@ -1,48 +1,48 @@
 keys,sv,en,ja
-FG,dimma,test,霧
-BR,fuktdis,test,もや
-MIFG,låg dimma,test,低い霧
-BFCG,hög dimbank,test,高い霧
-PRFG,delvis dimma,test,部分的な霧
-FZFG,underkyld dimma,test,冷たい霧
-DZ,duggregn,test,小雨
-FZDZ,underkylt duggregn,test,冷たい小雨
-FZRA,underkylt regn,test,冷たい雨
-RA,regn,test,雨
-SN,snö,test,雪
-SNRA,snö och regn,test,雨雪
-SG,kornsnö,test,霧雪
-GR,hagel,test,あられ
-PL,iskorn,test,氷あられ
-SHRA,regnskurar,test,にわか雨
-SHSN,snöbyar,test,にわか雪
-SHRASN,regn- och snöbyar,test,にわか雨と雪
-SHSNRA,snö- och regnbyar,test,にわか雪と雨
-SHGS,byar av snöhagel,test,にわかあられ
-SHGR,byar av ishagel,test,にわか氷あられ
-BLSN,högt snödrev,test,吹いてる雪
-DRSN,lågt snödrev,test,低い吹いてる雪
-IC,isnålar,test,霜柱
-DU,stoft,test,砂塵
-DS,stoftstorm,test,砂塵嵐
-PO,stoftvirvlar,test,塵旋風
-SA,sand,test,砂
-SS,sandstorm,test,砂嵐
-VA,vulkanisk aska!!,test,火山灰
-FC,tromb,test,漏斗雲
-FU,rök,test,煙
-HZ,torrdis,test,かずみ
-TS,åskväder,test,雷雨
-SQ,linjeby,test,急風
-SKC,klar himmel,test,晴天
-NCD,inget moln hittat,test,曇が見つけられない
-CLR,typ klart,test,高い雲だけ
-NSC,typ inga moln,test,重大な雲がない
-FEW,få moln,test,雲量が1/8～2/8
-SCT,spridda moln,test,雲量が3/8～4/8
-BKN,mulet,test,雲量が5/8～7/8
-OVC,heltäckt,test,雲量が8/8
-VV,vertikal sikt,test,垂直な視界
+FG,dimma,fog,霧
+BR,fuktdis,mist,もや
+MIFG,låg dimma,shallow fog,低い霧
+BCFG,hög dimbank,fog patches,高い霧
+PRFG,delvis dimma,partial fog,部分的な霧
+FZFG,underkyld dimma,freezing fog,冷たい霧
+DZ,duggregn,drizzle,小雨
+FZDZ,underkylt duggregn,frozen drizzle,冷たい小雨
+FZRA,underkylt regn,frozen rain,冷たい雨
+RA,regn,rain,雨
+SN,snö,snow,雪
+SNRA,snö och regn,snow and rain,雨雪
+SG,kornsnö,snow grains,霧雪
+GR,hagel,hail,あられ
+PL,iskorn,ice pellets,氷あられ
+SHRA,regnskurar,showers of rain,にわか雨
+SHSN,snöbyar,showers of snow,にわか雪
+SHRASN,regn- och snöbyar,showers of rain and snow,にわか雨と雪
+SHSNRA,snö- och regnbyar,showers of snow and rain,にわか雪と雨
+SHGS,byar av snöhagel,showers if snow pellets or small hail,にわかあられ
+SHGR,byar av ishagel,showers of hail,にわか氷あられ
+BLSN,högt snödrev,blowing snow,吹いてる雪
+DRSN,lågt snödrev,low drifting snow,低い吹いてる雪
+IC,isnålar,ice crystals,霜柱
+DU,stoft,dust,砂塵
+DS,stoftstorm,duststorm,砂塵嵐
+PO,stoftvirvlar,dust devils,塵旋風
+SA,sand,sand,砂
+SS,sandstorm,sandstorm,砂嵐
+VA,vulkanisk aska!!,vulcanic ash,火山灰
+FC,tromb,funnel cloud,漏斗雲
+FU,rök,smoke,煙
+HZ,torrdis,haze,かずみ
+TS,åskväder,thunderstorm,雷雨
+SQ,linjeby,squall,急風
+SKC,klar himmel,clear sky,晴天
+NCD,inget moln hittat,no clouds detected,曇が見つけられない
+CLR,typ klart,sky clear,高い雲だけ
+NSC,typ inga moln,no significant cloud,重大な雲がない
+FEW,få moln,few,雲量が1/8～2/8
+SCT,spridda moln,scattered,雲量が3/8～4/8
+BKN,mulet,broken,雲量が5/8～7/8
+OVC,heltäckt,overcast,雲量が8/8
+VV,vertikal sikt,vertical visibility,垂直な視界
 SHOW_RAW,Visa rådata,Show raw data,生データを表示
 FULLY_AUTO,Helt automatisk,Fully automated,全然自動
 UTC_TIME,UTC,UTC,協定世界時
