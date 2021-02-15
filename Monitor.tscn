@@ -60,10 +60,10 @@ __meta__ = {
 [node name="ShowRawButton" parent="." instance=ExtResource( 3 )]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 105.265
-margin_top = -161.704
-margin_right = 363.265
-margin_bottom = -87.704
+margin_left = 105.0
+margin_top = -162.0
+margin_right = 410.0
+margin_bottom = -88.0
 
 [node name="Unparsed" type="Label" parent="."]
 visible = false
