@@ -21,9 +21,9 @@ texture = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 127.762
-margin_top = 30.4501
+margin_top = 23.7684
 margin_right = 371.762
-margin_bottom = 191.449
+margin_bottom = 184.767
 custom_fonts/font = ExtResource( 2 )
 text = "030850Z
 "

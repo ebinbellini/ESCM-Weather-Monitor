@@ -46,6 +46,7 @@ VV,vertikal sikt,vertical visibility,垂直な視界
 SHOW_RAW,Visa rådata,Show raw data,生データを表示
 FULLY_AUTO,Helt automatisk,Fully automated,全然自動
 UTC_TIME,UTC,UTC,協定世界時
+MPS,m/s,m/s,メートル/秒
 KNOTS,knop,knots,ノット
 OK_VISIBILITY,Okej sikt!,OK visibility!,視界は順調です！
 METER,m,m,メートル

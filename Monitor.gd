@@ -3,11 +3,12 @@ extends Control
 onready var net: HTTPRequest = get_node("HTTPRequest")
 onready var grid: GridContainer = get_node("hide_dropdown/scroll/grid")
 onready var unparsed: Label = get_node("Unparsed")
-onready var button: Button = get_node("Button")
+onready var raw_data_button: Button = get_node("ShowRawButton")
 onready var title: Label = get_node("dropdown-button/Title")
 onready var dropdown_list: Control = get_node("dropdown-button/Dropdown/ScrollContainer/VBoxContainer")
 onready var dropdown: Control = get_node("dropdown-button/Dropdown")
 onready var spinner: VideoPlayer = get_node("spinner")
+onready var settings: Control = get_node("Settings")
 
 var textvalue_res: Resource = preload("res://widgets/textvalue/textvalue.tscn")
 var dropdown_option_res: Resource = preload("res://widgets/dropdown/dropdown_option.tscn")
@@ -39,15 +40,26 @@ const cloud_codes = [
 
 var selected_base: String = "ESCM"
 
+var selected_settings: Array = [false, false, false]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	net.connect("request_completed", self, "_on_request_completed")
-	button.connect("button_pressed", self, "_on_button_pressed")
+	raw_data_button.connect("button_pressed", self, "toggle_raw_data")
+	settings.connect("settings_changed", self, "settings_changed")
 	fetch_data()
 
 
-func _on_button_pressed():
+func settings_changed(new_settings: Array):
+	selected_settings = new_settings
+	var data = unparsed.get_text()
+	if data != "Loading...":
+		print("PARSAR MED ", data)
+		parse_metar_data(data)
+
+
+func toggle_raw_data():
 	# Toggle visibility of unparsed data
 	unparsed.visible = not unparsed.visible
 
@@ -55,7 +67,10 @@ func _on_button_pressed():
 func _on_request_completed(_result, _response_code, _headers, body):
 	var response: String = body.get_string_from_utf8()
 
-	parse_metar_data(response)
+	var metar_string: String = strip_metar_string(response)
+	unparsed.set_text(metar_string)
+
+	parse_metar_data(metar_string)
 	parse_bases(response)
 	spinner.visible = false
 
@@ -102,19 +117,19 @@ func base_selected(base: String):
 	dropdown.hide()
 
 
-func parse_metar_data(response: String):
-	# Parse response
+func strip_metar_string(response: String) -> String:
 	var base_pos: int = response.find(selected_base)
 	response.erase(0, base_pos)
 	var item_text_pos: int = response.find('item-text">')
 	response.erase(0, item_text_pos + len('item-text">'))
 	var end = response.find("=</span>")
 	response.erase(end, len(response) - end - 1)
+	return response
 
-	unparsed.set_text(response)
 
+func parse_metar_data(metar_string: String):
 	# This contains our desired data
-	var split: Array = response.split(" ")
+	var split: Array = metar_string.split(" ")
 
 	# Remove all previous nodes
 	for child in grid.get_children():
@@ -185,7 +200,7 @@ func insert_value(path: String, value: String):
 
 
 func format_time(inp: String) -> String:
-	var result: String =  (inp[2] + inp[3] + ":" + inp[4] + inp[5] + " " + tr("UTC_TIME"))
+	var result: String = (inp[2] + inp[3] + ":" + inp[4] + inp[5] + " " + tr("UTC_TIME"))
 	return result
 
 
@@ -197,7 +212,7 @@ func format_wind(value: String) -> String:
 		ang.erase(0, 1)
 
 
-	var speed = value[3] + value[4] + " " + tr("KNOTS")
+	var speed = value[3] + get_velocity_format_from_knots(int(value[4]))
 	# Remove zeroes from the beginning
 	if speed[0] == "0":
 		speed.erase(0, 1)
@@ -218,10 +233,12 @@ func format_wind_variation(value: String) -> String:
 
 
 func format_sight(value: String) -> String:
+	print("FORMAT_SIGHT [",value, "]")
 	if value == "CAVOK":
+		print("WOWOWWOWO")
 		return tr("OK_VISIBILITY")
 	else:
-		return value + " " + tr("METER")
+		return get_distance_format_from_feet(int(value))
 
 
 func format_weather(value: String) -> String:
@@ -258,7 +275,7 @@ func format_weather(value: String) -> String:
 	if res == "":
 		res = str(number)
 	elif number != -1 and res != "":
-		res = res + " " + str(100 * number) + " " + tr("FEET")
+		res = res + " " + get_distance_format_from_meters(100 * number)
 	if light:
 		res = tr("LIGHT") + " " + res
 	if unclear:
@@ -273,10 +290,10 @@ func format_weather(value: String) -> String:
 
 
 func format_temp(value: String) -> String:
-	var res = value
-	res = res.replace("M", "-")
-	res = res.replace("/", " °C / ") + " °C"
-	return res
+	value = value.replace("M", "-")
+	var split: Array = value.split("/")
+	
+	return get_temperature_format_from_celcius(int(split[0])) + " / " + get_temperature_format_from_celcius(int(split[1]))
 
 
 func format_pressure(value: String) -> String:
@@ -301,3 +318,28 @@ func fetch_data():
 func _on_spinner_finished():
 	if spinner.visible:
 		spinner.play()
+
+
+func get_temperature_format_from_celcius(celcius: int) -> String:
+	if selected_settings[0]:
+		return str(celcius * 1.8 + 32) + " °F"
+	else:
+		return str(celcius) + " °C"
+
+
+func get_distance_format_from_feet(feet: float) -> String:
+	if selected_settings[1]:
+		return str(round(feet)) + " " + tr("FEET")
+	else:
+		return str(round(feet / 3.2808)) + " " + tr("METER")
+
+
+func get_distance_format_from_meters(meters: float) -> String:
+	return get_distance_format_from_feet(meters * 3.2808)
+
+
+func get_velocity_format_from_knots(knots: int) -> String:
+	if selected_settings[2]:
+		return str(knots) + " " + tr("KNOTS")
+	else:
+		return str(round(knots * 0.514444)) + " " + tr("MPS")
