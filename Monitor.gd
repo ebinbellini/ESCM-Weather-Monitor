@@ -55,7 +55,6 @@ func settings_changed(new_settings: Array):
 	selected_settings = new_settings
 	var data = unparsed.get_text()
 	if data != "Loading...":
-		print("PARSAR MED ", data)
 		parse_metar_data(data)
 
 
@@ -226,16 +225,13 @@ func format_wind_variation(value: String) -> String:
 	# Remove zeroes
 	for i in range(2):
 		while split[i][0] == "0":
-			print(split[i])
 			split[i] = split[i].trim_prefix("0")
 
 	return split[0] + "°" + tr("FROM_TO") + split[1] + "°"
 
 
 func format_sight(value: String) -> String:
-	print("FORMAT_SIGHT [",value, "]")
 	if value == "CAVOK":
-		print("WOWOWWOWO")
 		return tr("OK_VISIBILITY")
 	else:
 		return get_distance_format_from_feet(int(value))
