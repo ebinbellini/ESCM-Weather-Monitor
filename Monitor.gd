@@ -9,6 +9,7 @@ onready var dropdown_list: Control = get_node("dropdown-button/Dropdown/ScrollCo
 onready var dropdown: Control = get_node("dropdown-button/Dropdown")
 onready var spinner: VideoPlayer = get_node("spinner")
 onready var settings: Control = get_node("Settings")
+onready var errorpanel: Control = get_node("Errorpanel")
 
 var textvalue_res: Resource = preload("res://widgets/textvalue/textvalue.tscn")
 var dropdown_option_res: Resource = preload("res://widgets/dropdown/dropdown_option.tscn")
@@ -48,6 +49,7 @@ func _ready():
 	net.connect("request_completed", self, "_on_request_completed")
 	raw_data_button.connect("button_pressed", self, "toggle_raw_data")
 	settings.connect("settings_changed", self, "settings_changed")
+	errorpanel.connect("retry", self, "fetch_data")
 	fetch_data()
 
 
@@ -64,14 +66,17 @@ func toggle_raw_data():
 
 
 func _on_request_completed(_result, _response_code, _headers, body):
-	var response: String = body.get_string_from_utf8()
+	if _result == HTTPRequest.RESULT_SUCCESS:
+		var response: String = body.get_string_from_utf8()
 
-	var metar_string: String = strip_metar_string(response)
-	unparsed.set_text(metar_string)
+		var metar_string: String = strip_metar_string(response)
+		unparsed.set_text(metar_string)
 
-	parse_metar_data(metar_string)
-	parse_bases(response)
-	spinner.visible = false
+		parse_metar_data(metar_string)
+		parse_bases(response)
+		spinner.visible = false
+	else:
+		errorpanel.show_error("A connection could not be established. Would you like to try again?")
 
 
 func parse_bases(response: String):

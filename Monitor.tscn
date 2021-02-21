@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://fonts/poppins/poppins24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://fonts/poppins/poppins180.tres" type="DynamicFont" id=2]
 [ext_resource path="res://widgets/button/button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://imgs/triangle.svg" type="Texture" id=4]
 [ext_resource path="res://widgets/settings/settings.tscn" type="PackedScene" id=5]
+[ext_resource path="res://widgets/errordialog/error.tscn" type="PackedScene" id=6]
 [ext_resource path="res://widgets/dropdown/dropdown.tscn" type="PackedScene" id=7]
 [ext_resource path="res://plane-spinner.ogv" type="VideoStream" id=8]
 [ext_resource path="res://imgs/cog.svg" type="Texture" id=9]
@@ -27,6 +28,7 @@ __meta__ = {
 }
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+timeout = 30
 
 [node name="ReloadDataTimer" type="Timer" parent="."]
 wait_time = 600.0
@@ -182,6 +184,8 @@ __meta__ = {
 }
 
 [node name="Settings" parent="." instance=ExtResource( 5 )]
+
+[node name="Errorpanel" parent="." instance=ExtResource( 6 )]
 [connection signal="timeout" from="ReloadDataTimer" to="." method="fetch_data"]
 [connection signal="pressed" from="hide_dropdown" to="dropdown-button/Dropdown" method="hide"]
 [connection signal="finished" from="spinner" to="." method="_on_spinner_finished"]
