@@ -239,7 +239,7 @@ func format_sight(value: String) -> String:
 	if value == "CAVOK":
 		return tr("OK_VISIBILITY")
 	else:
-		return get_distance_format_from_feet(int(value))
+		return get_distance_format_from_meters(int(value))
 
 
 func format_weather(value: String) -> String:
